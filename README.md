@@ -14,7 +14,7 @@ Bu proje, PHP ve Laravel framework kullanılarak geliştirilmiş bir futbol ligi
 
 Projeyi yerel olarak kurmak için aşağıdaki adımları izleyin:
 
-1. Projeyi GitHub'dan klonlayın: git clone https://github.com/gencaykete/match.git
+1. Projeyi GitHub'dan klonlayın: `git clone https://github.com/gencaykete/match.git`
 
 2. Bağımlılıkları yükleyin: `composer install`
 

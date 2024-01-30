@@ -31,7 +31,7 @@
             <a href="{{route('match.index')}}">
                 <div class="parent-icon"><i class="bx bx-home-circle"></i>
                 </div>
-                <div class="menu-title">Maçlar</div>
+                <div class="menu-title">Geçmiş Maçlar</div>
             </a>
         </li>
 

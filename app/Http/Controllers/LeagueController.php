@@ -54,7 +54,8 @@ class LeagueController extends Controller
 
         // Her iki takım için 90 dakika boyunca gol şansını hesapla
         for ($i = 0; $i < 90; $i++) {
-            if (rand(0, 100) < $homeTeamStrength) {
+            // Burdaki $homeTeamStrength * 1.10 ev sahibi takımın kazanma oranını %10 arttırmak için
+            if (rand(0, 100) < $homeTeamStrength * 1.10) {
                 $homeTeamScore++;
             }
             if (rand(0, 100) < $awayTeamStrength) {

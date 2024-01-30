@@ -69,13 +69,17 @@ class Team extends Model
 
     public function calculateChampionshipProbabilities()
     {
+        // Kalan maç sayısını
         $remaining_matches = 6 - Standing::getCurrentWeek();
         $teams = Team::all();
+        // Kalan maç sayısına göre tüm takımların alabileceği puanı hesapladık
         $totalPointsAvailable = $this->calculateTotalPointsAvailable($teams, $remaining_matches);
 
         $championshipProbabilities = [];
         foreach ($teams as $team) {
+            // Oynadığı her maçı kazanma ihtimalini düşündüm
             $maxPossiblePoints = $team->standing->points + ($remaining_matches * 3);
+            // Maksimumum alabileceği puanın kazanaılabilecek tüm puanına göre oranını aldım
             $championshipProbabilities[$team->id] = $maxPossiblePoints / $totalPointsAvailable * 100;
         }
 

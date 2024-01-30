@@ -103,4 +103,13 @@ class LeagueController extends Controller
         $standing->save();
     }
 
+    public function finish()
+    {
+        $remaining_matches = 6 - Standing::getCurrentWeek();
+
+        for ($i = 1; $i <= $remaining_matches; $i++) {
+            $this->advance();
+        }
+    }
+
 }

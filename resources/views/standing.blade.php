@@ -75,7 +75,7 @@
                                         <th>AG</th>
                                         <th>YG</th>
                                         <th>Puan</th>
-                                        @if($currentWeek > 3)
+                                        @if($currentWeek > 3 && $currentWeek < 6)
                                             <th>Şampiyonluk İhtimali</th>
                                         @endif
                                     </tr>
@@ -83,15 +83,20 @@
                                     <tbody>
                                     @foreach($standings as $standing)
                                         <tr>
-                                            <td>{{ $standing->team->name }}</td>
+                                            <td>
+                                                {{ $standing->team->name }}
+                                                @if($currentWeek == 6 && $loop->first)
+                                                    <b class="text-danger">(Şampiyon)</b>
+                                                @endif
+                                            </td>
                                             <td>{{ $standing->wins }}</td>
                                             <td>{{ $standing->draws }}</td>
                                             <td>{{ $standing->losses }}</td>
                                             <td>{{ $standing->goals_for }}</td>
                                             <td>{{ $standing->goals_against }}</td>
                                             <td>{{ $standing->points }}</td>
-                                            @if($currentWeek > 3)
-                                                <td>{{ $standing->team->calculateChampionshipProbabilities() }}</td>
+                                            @if($currentWeek > 3 && $currentWeek < 6)
+                                                <td>%{{ $standing->team->calculateChampionshipProbabilities() }}</td>
                                             @endif
                                         </tr>
                                     @endforeach

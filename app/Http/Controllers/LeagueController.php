@@ -37,7 +37,8 @@ class LeagueController extends Controller
             ]);
             $match->save();
 
-
+            // Maç sonuçlarına göre puanları güncelle
+            $this->updateMatchResult($match, $result['homeScore'], $result['awayScore']);
         }
 
         return back()->with('response', [
@@ -64,5 +65,42 @@ class LeagueController extends Controller
         return ['homeScore' => $homeTeamScore, 'awayScore' => $awayTeamScore];
     }
 
+    public function updateMatchResult(Matches $match, $homeScore, $awayScore): void
+    {
+        // Ev sahibi ve deplasman takımının puan durumunu güncelle
+        $this->updateStanding($match->homeTeam, $homeScore, $awayScore);
+        $this->updateStanding($match->awayTeam, $awayScore, $homeScore);
+    }
+
+    private function updateStanding(Team $team, $teamScore, $opponentScore): void
+    {
+        if ($team->standing) {
+            $standing = $team->standing;
+        } else {
+            $standing = new Standing();
+            $standing->team_id = $team->id;
+            $standing->wins = 0;
+            $standing->draws = 0;
+            $standing->losses = 0;
+            $standing->goals_for = 0;
+            $standing->goals_against = 0;
+            $standing->points = 0;
+        }
+
+        if ($teamScore > $opponentScore) {
+            $standing->wins++;
+            $standing->points += 3;
+        } elseif ($teamScore == $opponentScore) {
+            $standing->draws++;
+            $standing->points += 1;
+        } else {
+            $standing->losses++;
+        }
+
+        $standing->goals_for += $teamScore;
+        $standing->goals_against += $opponentScore;
+
+        $standing->save();
+    }
 
 }

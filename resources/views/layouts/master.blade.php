@@ -31,7 +31,7 @@
     <link href="/backend/plugins/select2/css/select2.min.css" rel="stylesheet" />
     <link href="/backend/plugins/select2/css/select2-bootstrap4.css" rel="stylesheet" />
 
-    <title>@yield('title','Peta Mobil Takip Sistemleri | Yönetim')</title>
+    <title>@yield('title','Maç Takip Sistemi')</title>
 </head>
 
 <body>

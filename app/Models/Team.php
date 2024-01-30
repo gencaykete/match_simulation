@@ -66,4 +66,28 @@ class Team extends Model
 
         return "Sıralama Belirsiz";
     }
+
+    public function calculateChampionshipProbabilities()
+    {
+        $remaining_matches = 6 - Standing::getCurrentWeek();
+        $teams = Team::all();
+        $totalPointsAvailable = $this->calculateTotalPointsAvailable($teams, $remaining_matches);
+
+        $championshipProbabilities = [];
+        foreach ($teams as $team) {
+            $maxPossiblePoints = $team->standing->points + ($remaining_matches * 3);
+            $championshipProbabilities[$team->id] = $maxPossiblePoints / $totalPointsAvailable * 100;
+        }
+
+        return floor($championshipProbabilities[$this->id]);
+    }
+
+    private function calculateTotalPointsAvailable($teams, $remaining_matches)
+    {
+        $totalPoints = 0;
+        foreach ($teams as $team) {
+            $totalPoints += $team->standing->points + ($remaining_matches * 3);
+        }
+        return $totalPoints;
+    }
 }

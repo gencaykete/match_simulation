@@ -75,6 +75,9 @@
                                         <th>AG</th>
                                         <th>YG</th>
                                         <th>Puan</th>
+                                        @if($currentWeek > 3)
+                                            <th>Şampiyonluk İhtimali</th>
+                                        @endif
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -87,6 +90,9 @@
                                             <td>{{ $standing->goals_for }}</td>
                                             <td>{{ $standing->goals_against }}</td>
                                             <td>{{ $standing->points }}</td>
+                                            @if($currentWeek > 3)
+                                                <td>{{ $standing->team->calculateChampionshipProbabilities() }}</td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                     </tbody>

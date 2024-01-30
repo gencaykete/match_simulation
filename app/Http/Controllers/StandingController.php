@@ -21,7 +21,7 @@ class StandingController extends Controller
             ->get();
 
 
-        return view('home',compact('teams','currentWeek','totalMatch','standings'));
+        return view('standing',compact('teams','currentWeek','totalMatch','standings'));
     }
 
 

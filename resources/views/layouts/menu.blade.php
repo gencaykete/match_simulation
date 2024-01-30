@@ -1,9 +1,6 @@
 <div class="sidebar-wrapper" data-simplebar="true">
     <div class="sidebar-header">
         <div>
-            <img src="{{storage(setting('favicon'))}}" class="logo-icon" alt="logo icon">
-        </div>
-        <div>
             <h4 class="logo-text">Lig Takip</h4>
         </div>
         <div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
@@ -35,25 +32,27 @@
             </a>
         </li>
 
-        <li>
-            <hr>
-        </li>
+        @if(\App\Models\Standing::getCurrentWeek() < 6)
+            <li>
+                <hr>
+            </li>
 
-        <li>
-            <a href="{{route('league.advance')}}">
-                <div class="parent-icon"><i class="bx bx-right-arrow"></i>
-                </div>
-                <div class="menu-title">Ligi İlerlet</div>
-            </a>
-        </li>
+            <li>
+                <a href="{{route('league.advance')}}">
+                    <div class="parent-icon"><i class="bx bx-right-arrow"></i>
+                    </div>
+                    <div class="menu-title">Ligi İlerlet</div>
+                </a>
+            </li>
 
-        <li>
-            <a href="{{route('league.finish')}}">
-                <div class="parent-icon"><i class="bx bx-flag"></i>
-                </div>
-                <div class="menu-title">Ligi Bitir</div>
-            </a>
-        </li>
+            <li>
+                <a href="{{route('league.finish')}}">
+                    <div class="parent-icon"><i class="bx bx-flag"></i>
+                    </div>
+                    <div class="menu-title">Ligi Bitir</div>
+                </a>
+            </li>
+        @endif
     </ul>
     <!--end navigation-->
 </div>

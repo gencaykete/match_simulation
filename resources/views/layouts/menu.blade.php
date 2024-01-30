@@ -38,7 +38,7 @@
             </li>
 
             <li>
-                <a href="{{route('league.advance')}}">
+                <a href="javascript:void(0)" data-url="{{route('league.advance')}}" id="advanceLeagueBtn">
                     <div class="parent-icon"><i class="bx bx-right-arrow"></i>
                     </div>
                     <div class="menu-title">Ligi İlerlet</div>

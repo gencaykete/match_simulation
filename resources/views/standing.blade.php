@@ -81,7 +81,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($standings as $standing)
+                                    @forelse($standings as $standing)
                                         <tr>
                                             <td>
                                                 {{ $standing->team->name }}
@@ -99,7 +99,19 @@
                                                 <td>%{{ $standing->team->calculateChampionshipProbabilities() }}</td>
                                             @endif
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        @foreach($teams as $team)
+                                            <tr>
+                                                <td>{{$team->name}}</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                            </tr>
+                                        @endforeach
+                                    @endforelse
                                     </tbody>
                                 </table>
                             </div>

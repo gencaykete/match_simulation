@@ -18,7 +18,6 @@ class StandingController extends Controller
         $standings = Standing::with('team')
             ->orderBy('points', 'desc')
             ->orderBy('goals_for', 'desc')
-            ->orderBy('goals_against', 'desc')
             ->get();
 
 

@@ -41,7 +41,7 @@ class Standing extends Model
 
     public function team()
     {
-        return $this->belongsTo(Team::class, 'id');
+        return $this->belongsTo(Team::class);
     }
 
     public static function getCurrentWeek(): float

@@ -15,7 +15,11 @@ class StandingController extends Controller
         $teams = Team::all();
         $currentWeek = Standing::getCurrentWeek();
         $totalMatch = Matches::count();
-        $standings = Standing::with('team')->orderBy('points', 'desc')->get();
+        $standings = Standing::with('team')
+            ->orderBy('points', 'desc')
+            ->orderBy('goals_for', 'desc')
+            ->orderBy('goals_against', 'desc')
+            ->get();
 
 
         return view('home',compact('teams','currentWeek','totalMatch','standings'));
